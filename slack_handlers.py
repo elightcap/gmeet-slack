@@ -16,9 +16,9 @@ class SlackBotHandlers:
     def _register_handlers(self):
         """Register all Slack event handlers"""
         
-        @self.app.command("/meet")
-        def handle_meet_command(ack, respond, command):
-            """Handle the /meet slash command"""
+        @self.app.command("/gmeet")
+        def handle_gmeet_command(ack, respond, command):
+            """Handle the /gmeet slash command"""
             ack()
             
             try:
@@ -106,14 +106,14 @@ class SlackBotHandlers:
         @self.app.event("app_mention")
         def handle_app_mention(event, say):
             """Handle when the bot is mentioned"""
-            say("👋 Hi! Use `/meet` to create a Google Meet meeting. You can also specify a title and duration like `/meet Team Standup 30m`")
+            say("👋 Hi! Use `/gmeet` to create a Google Meet meeting. You can also specify a title and duration like `/gmeet Team Standup 30m`")
         
         @self.app.event("message")
         def handle_message_events(event, say):
             """Handle direct messages to the bot"""
             # Only respond to direct messages (not channel messages)
             if event.get('channel_type') == 'im':
-                say("👋 Hi! Use `/meet` to create a Google Meet meeting. You can also specify a title and duration like `/meet Team Standup 30m`")
+                say("👋 Hi! Use `/gmeet` to create a Google Meet meeting. You can also specify a title and duration like `/gmeet Team Standup 30m`")
     
     def start(self):
         """Start the Slack bot"""

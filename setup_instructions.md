@@ -53,7 +53,7 @@ This guide will walk you through setting up the Google Meet Slack Bot step by st
 1. Go to "Slash Commands"
 2. Click "Create New Command"
 3. Fill in:
-   - Command: `/meet`
+   - Command: `/gmeet`
    - Request URL: `https://your-domain.com/slack/events` (for now, use a placeholder)
    - Short Description: `Create a Google Meet meeting`
    - Usage Hint: `[title] [duration]`
@@ -107,9 +107,9 @@ On first run:
 4. A `token.json` file will be created automatically
 
 ### 4.3 Test the Bot
-1. In Slack, type `/meet`
+1. In Slack, type `/gmeet`
 2. You should see a meeting created with a Google Meet link
-3. Try variations like `/meet Team Standup 30m`
+3. Try variations like `/gmeet Team Standup 30m`
 
 ## Step 5: Deploy (Optional)
 

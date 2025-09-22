@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  gmeetslack-bot:
+    build: .
+    container_name: gmeetslack-bot-prod
+    restart: unless-stopped
+    environment:
+      # Slack Configuration
+      - SLACK_BOT_TOKEN=${SLACK_BOT_TOKEN}
+      - SLACK_SIGNING_SECRET=${SLACK_SIGNING_SECRET}
+      - SLACK_APP_TOKEN=${SLACK_APP_TOKEN}
+      
+      # Google Calendar Configuration
+      - GOOGLE_CREDENTIALS_FILE=/app/credentials/credentials.json
+      - GOOGLE_TOKEN_FILE=/app/credentials/token.json
+      
+      # Bot Configuration
+      - BOT_USER_ID=${BOT_USER_ID}
+    
+    volumes:
+      # Mount credentials directory for Google OAuth
+      - ./credentials:/app/credentials:ro
+      # Mount logs directory
+      - ./logs:/app/logs
+    
+    # Health check
+    healthcheck:
+      test: ["CMD", "python", "-c", "import sys; sys.exit(0)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    
+    # Resource limits for production
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: '0.5'
+        reservations:
+          memory: 512M
+          cpus: '0.25'
+    
+    # Logging configuration
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"

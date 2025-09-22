@@ -6,6 +6,7 @@
 # Google OAuth credentials
 credentials.json
 token.json
+credentials/
 
 # Python
 __pycache__/
