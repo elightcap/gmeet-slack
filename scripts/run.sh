@@ -31,15 +31,15 @@ mkdir -p logs
 
 # Start the bot
 echo "🐳 Starting Docker containers..."
-docker-compose up -d
+docker compose up -d
 
 echo "✅ Bot started successfully!"
 echo ""
 echo "To view logs:"
-echo "  docker-compose logs -f"
+echo "  docker compose logs -f"
 echo ""
 echo "To stop the bot:"
-echo "  docker-compose down"
+echo "  docker compose down"
 echo ""
 echo "To restart the bot:"
-echo "  docker-compose restart"
+echo "  docker compose restart"
