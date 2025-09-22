@@ -13,6 +13,7 @@ A containerized Slack bot that allows users to create Google Meet meetings using
 - 💬 **Channel Support**: Works in channels and direct messages
 - 🎨 **Rich UI**: Beautiful Slack blocks with action buttons
 - 🐳 **Containerized**: Easy deployment with Docker and Docker Compose
+- 🔌 **Socket Mode**: Direct connection to Slack (no web server needed)
 
 ## Quick Start
 
@@ -97,10 +98,11 @@ docker-compose restart
 ### Development
 
 ```bash
-# Run with web interface
-docker-compose --profile web up -d
+# Run in development mode
+docker-compose up -d
 
-# Access web interface at http://localhost:8080
+# View logs
+docker-compose logs -f
 ```
 
 ### Production
@@ -193,7 +195,6 @@ gmeetslack/
 ├── Dockerfile            # Docker image definition
 ├── docker-compose.yml    # Docker Compose configuration
 ├── docker-compose.prod.yml # Production configuration
-├── nginx.conf            # Nginx configuration
 ├── .dockerignore         # Docker ignore file
 ├── env.example           # Environment variables template
 ├── scripts/              # Helper scripts
