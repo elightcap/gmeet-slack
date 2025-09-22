@@ -37,7 +37,8 @@ class GoogleCalendarService:
                 
                 flow = InstalledAppFlow.from_client_secrets_file(
                     Config.GOOGLE_CREDENTIALS_FILE, SCOPES)
-                creds = flow.run_local_server(port=0)
+                # Use headless authentication for Docker environment
+                creds = flow.run_local_server(port=0, open_browser=False)
             
             # Save the credentials for the next run
             with open(Config.GOOGLE_TOKEN_FILE, 'w') as token:

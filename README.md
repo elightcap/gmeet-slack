@@ -55,6 +55,9 @@ BOT_USER_ID=U1234567890
 mkdir -p credentials
 # Place your credentials.json file in the credentials/ directory
 cp /path/to/your/credentials.json credentials/
+
+# Set up Google OAuth authentication
+python setup_auth.py
 ```
 
 ### 4. Run the Bot
@@ -214,12 +217,19 @@ gmeetslack/
    - Verify `credentials.json` is in the `credentials/` directory
    - Check Docker logs: `docker-compose logs`
 
-2. **Authentication errors**
+2. **"could not locate runnable browser" error**
+   - Run `python setup_auth.py` first to set up authentication
+   - Complete the OAuth flow in your browser
+   - Copy the generated `token.json` to your container
+   - For Docker: Mount the `credentials/` directory as a volume
+
+3. **Authentication errors**
    - Verify Slack tokens are correct
    - Check Google credentials file
    - Ensure Google Calendar API is enabled
+   - Run `python setup_auth.py` to set up Google OAuth
 
-3. **Permission denied**
+4. **Permission denied**
    - Make sure scripts are executable: `chmod +x scripts/*.sh`
    - Check file permissions in the `credentials/` directory
 

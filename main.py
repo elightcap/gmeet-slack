@@ -40,6 +40,15 @@ def check_google_credentials():
         print("Please download your OAuth2 credentials from Google Cloud Console and save as 'credentials.json'")
         return False
     
+    # Check if token file exists
+    if not os.path.exists(Config.GOOGLE_TOKEN_FILE):
+        print(f"⚠️  Google token file not found: {Config.GOOGLE_TOKEN_FILE}")
+        print("You need to run the authentication setup first:")
+        print("1. Run: python setup_auth.py")
+        print("2. Complete the OAuth flow")
+        print("3. Then restart the bot")
+        return False
+    
     return True
 
 def main():
